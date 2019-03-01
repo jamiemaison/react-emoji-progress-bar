@@ -2,4 +2,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgb(235, 75, 138);
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  body {
+    height: 80vh;
+  }
+
 }
