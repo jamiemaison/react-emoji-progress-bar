@@ -1,5 +1,7 @@
 # react-emoji-progress-bar
 
+<img src="https://github.com/jamiemaison/react-emoji-progress-bar/blob/master/assets/EmojiProgressBar_small.png" alt="Emoji Progress bar" width="270px">
+
 Built by [Jamie Maison](https://www.jamiemaison.com/)  
 Example: [https://jamiemaison.github.io/react-emoji-progress-bar/](https://jamiemaison.github.io/react-emoji-progress-bar/)
 
