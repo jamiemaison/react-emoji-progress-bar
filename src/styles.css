@@ -37,3 +37,9 @@
   height: 100%;
   border-radius: 22px;
 }
+
+.percentage {
+  float: right;
+  color: #fff;
+  margin-top: 1vw;
+}

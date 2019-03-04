@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styles from './styles.css'
 
 import EmojiProgressBar from 'react-emoji-progress-bar'
 
@@ -24,9 +25,15 @@ export default class App extends Component {
   render () {
     return (
       <div>
-        <div style={{width: '30vw', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+        <div className="heading-container">
+          <div className="heading-emoji">Emoji</div>
+          <div className="heading-progress-bar">Progress Bar</div>
+          <div className="heading-author">by <a href="https://www.jamiemaison.com">Jamie Maison</a></div>
+        </div>
+        <div className="example-container">
           <EmojiProgressBar progress={this.state.progress} />
         </div>
+        <div className="installation-container"><a href="https://github.com/jamiemaison/react-emoji-progress-bar">Installation instructions <span>></span></a></div>
       </div>
     )
   }

@@ -6,6 +6,8 @@ const Posed = require('react-pose').default;
 interface Props {
   progress: number;
   color?: string;
+  showPercentage?: boolean;
+  onComplete?: () => void; 
 }
 
 const EmojiDiv = Posed.div({
@@ -14,12 +16,23 @@ const EmojiDiv = Posed.div({
 });
 
 export default class EmojiProgressBar extends React.Component<Props> {
+  private isComplete = false;
+
+  public componentDidUpdate() {
+    if (this.props.progress >= 100 && !this.isComplete && this.props.onComplete) {
+      this.props.onComplete();
+      this.isComplete = true;
+    }
+
+    if (this.isComplete && this.props.progress < 100) {
+      this.isComplete = false;
+    }
+  }
 
   public render() {
     return (
       <div className={styles.container}>
         <Twemoji className={styles.emojiBar} options={{ className: 'twemoji' }}>
-          <EmojiDiv pose={this.props.progress < 10 ? 'visible' : 'hidden'} style={{ left: '0%', display: this.props.progress < 10 ? 'block' : 'none' }}>😠</EmojiDiv>
           <EmojiDiv pose={this.props.progress >= 10 && this.props.progress < 15 ? 'visible' : 'hidden'} style={{ left: '10%', display: this.props.progress >= 10 && this.props.progress < 20 ? 'block' : 'none' }}>😖</EmojiDiv>
           <EmojiDiv pose={this.props.progress >= 20 && this.props.progress < 25 ? 'visible' : 'hidden'} style={{ left: '20%', display: this.props.progress >= 20 && this.props.progress < 30 ? 'block' : 'none' }}>️☹️</EmojiDiv>
           <EmojiDiv pose={this.props.progress >= 30 && this.props.progress < 35 ? 'visible' : 'hidden'} style={{ left: '30%', display: this.props.progress >= 30 && this.props.progress < 40 ? 'block' : 'none' }}>😕</EmojiDiv>
@@ -34,6 +47,7 @@ export default class EmojiProgressBar extends React.Component<Props> {
         <div className={styles.outer} style={{ border: `solid ${this.props.color ? this.adjustBrightness(this.props.color, -30) : this.adjustBrightness('#eb4b8a', -30)} 4px` }}>
           <div className={styles.inner} style={{ width: `${this.props.progress.toString()}%`, backgroundColor: this.props.color ? this.props.color : '#eb4b8a' }} />
         </div>
+        { this.props.showPercentage ? <div className={styles.percentage}>{this.props.progress <= 100 ? `${Math.round(this.props.progress)}%` : '100%'}</div> : null }
       </div>
     )
   }
